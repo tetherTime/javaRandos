@@ -16,6 +16,7 @@ public class PlayerRoster
 	public static void main(String[] args)
 	{
 
+		// DELETE
 		try
 		{
 			System.setIn(new FileInputStream("newRoster.txt"));
@@ -64,6 +65,7 @@ public class PlayerRoster
 					System.out.println();
 					break;
 				case "r":
+				changeRoster(input, jerseys, ratings);
 					break;
 				case "o":
 					outputRoster(jerseys, ratings);
@@ -77,12 +79,38 @@ public class PlayerRoster
 		} while (!userInput.equals("q"));
 	}
 
+	private static void changeRoster(Scanner input, int[] jerseys, int[] ratings)
+	{
+		
+		System.out.println("Enter a jersey number:");
+		int jersey = input.nextInt();
+		int jerseyIndex = 0;
+		boolean found = false;
+		for (int i = 0; i < jerseys.length; i++)
+		{
+			if (jerseys[i] == jersey)
+			{
+				jerseyIndex = i;
+				found = true;
+			}
+		}
+		if (found)
+		{
+			System.out.println("Enter a new jersey number:");
+			jerseys[jerseyIndex] = input.nextInt();
+			
+			System.out.println("Enter a rating for the new player:");
+			ratings[jerseyIndex] = input.nextInt();
+			input.nextLine();
+		}
+	}
+
 	private static void outputAbove(Scanner input, int[] jerseys, int[] ratings)
 	{
 		System.out.println("Enter a rating:");
 		int rating = input.nextInt();
 		input.nextLine();
-		System.out.println("ABOVE" + rating);
+		System.out.println("ABOVE " + rating);
 		for (int i = 0; i < jerseys.length; i++)
 		{
 			if (ratings[i] > rating)
