@@ -21,7 +21,7 @@ public class PeopleWeights
 		// DELETE
 		try
 		{
-			System.setIn(new FileInputStream("newRoster.txt"));
+			System.setIn(new FileInputStream("tester.txt"));
 		} catch (FileNotFoundException e)
 		{
 			System.out.println("File not found");
