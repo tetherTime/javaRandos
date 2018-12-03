@@ -65,7 +65,7 @@ public class ItemToPurchase
 	 */
 	public void printItemDescription()
 	{
-		System.out.printf("%s: %s", 
+		System.out.printf("%s: %s\n", 
 				this.getName(), this.getDescription());
 	}
 	/**

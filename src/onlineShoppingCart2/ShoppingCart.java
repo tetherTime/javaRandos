@@ -47,8 +47,9 @@ public class ShoppingCart
 		System.out.println("Item Descriptions");
 		for (ItemToPurchase item : this.cartItems)
 		{
-			item.getDescription();
+			item.printItemDescription();
 		}
+		System.out.println();
 	}
 	/**
 	 * METHOD - printTotal
@@ -57,21 +58,26 @@ public class ShoppingCart
 	 */
 	public void printTotal()
 	{
-		if (this.cartItems.isEmpty())
-		{
-			System.out.println("SHOPPING CART IS EMPTY");
-			return;
-		}
+
 		
 		System.out.printf("%s\'s Shopping Cart - %s\n", 
 				this.getCustomerName(), this.getDate());
 		System.out.println("Number of Items: " + this.getNumItemsInCart());
 		System.out.println();
+		
+		if (this.cartItems.isEmpty())
+		{
+			System.out.println("SHOPPING CART IS EMPTY");
+			System.out.println();
+			System.out.println("Total: $" + this.getCostOfCart());
+			System.out.println();
+			return;
+		}
 		for (ItemToPurchase item : this.cartItems)
 			item.printCost();
 		System.out.println();
-		System.out.println("Total: " + this.getCostOfCart());
-		
+		System.out.println("Total: $" + this.getCostOfCart());
+		System.out.println();
 	}
 	
 	/**
@@ -82,7 +88,12 @@ public class ShoppingCart
 	 */
 	public int getNumItemsInCart()
 	{
-		return this.cartItems.size();
+		int sum = 0;
+		for (ItemToPurchase item : cartItems)
+		{
+			sum += item.getQuantity();
+		}
+		return sum;
 	}
 	
 	/**
@@ -117,7 +128,7 @@ public class ShoppingCart
 		int 	size 	 = this.cartItems.size();
 		int 	index 	 = 0;
 		
-		for (int i = 0; i < size || found; i++)
+		for (int i = 0; i < size & !found; i++)
 		{
 			if (this.cartItems.get(i).getName().equals(itemName))
 			{
@@ -128,7 +139,7 @@ public class ShoppingCart
 		
 		if (!found)
 		{
-			System.out.println("Item not found in cart.");
+			System.out.println("Item not found in cart. Nothing modified.\n");
 			return;
 		}
 		
@@ -157,16 +168,19 @@ public class ShoppingCart
 		boolean found = false;
 		int size = this.cartItems.size();
 		
-		for (int i = 0; i < size || found; i++)
+		for (int i = 0; i < size & !found; i++)
 		{
 			if (this.cartItems.get(i).getName().equals(itemName))
 			{
+				//System.out.println(i);
 				this.cartItems.remove(i);
 				found = true;
 			}
 		}
+
 		if (!found)
 			System.out.println("Item not found in cart. Nothing removed.");
+		System.out.println();
 	}
 	/**
 	 * METHOD - addItem
