@@ -5,7 +5,7 @@
 * Author		Jorge Jimenez
 */
 
-//package onlineShoppingCart;
+package onlineShoppingCart;
 
 public class ItemToPurchase
 {

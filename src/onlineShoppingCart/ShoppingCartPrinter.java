@@ -5,7 +5,7 @@
 * Author		Jorge Jimenez
 */
 
-//package onlineShoppingCart;
+package onlineShoppingCart;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
